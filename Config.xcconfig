@@ -1,0 +1,3 @@
+// Shared build settings. Your signing team lives in Local.xcconfig (git-ignored), e.g.:
+//   DEVELOPMENT_TEAM = ABCDE12345
+#include? "Local.xcconfig"

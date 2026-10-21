@@ -1,0 +1,14 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Raw (unframed) screenshots — only the framed ones are committed
+docs/raw/
+
+.DS_Store
+
+# Personal signing team
+Local.xcconfig
