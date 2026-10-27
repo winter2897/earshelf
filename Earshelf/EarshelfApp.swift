@@ -2,7 +2,7 @@ import SwiftData
 import SwiftUI
 
 @main
-struct StorytellerApp: App {
+struct EarshelfApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @Environment(\.scenePhase) private var phase
     private let container: ModelContainer

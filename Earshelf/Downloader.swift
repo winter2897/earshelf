@@ -14,7 +14,7 @@ final class Downloader: NSObject {
 
     override init() {
         super.init()
-        let c = URLSessionConfiguration.background(withIdentifier: "com.haiquan.storyteller.downloads")
+        let c = URLSessionConfiguration.background(withIdentifier: "com.haiquan.earshelf.downloads")
         c.sessionSendsLaunchEvents = true
         c.isDiscretionary = false
         c.httpMaximumConnectionsPerHost = 2

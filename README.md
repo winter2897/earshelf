@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/icon.png" width="120" alt="Storyteller icon" />
+  <img src="docs/icon.png" width="120" alt="Earshelf icon" />
 </p>
 
-<h1 align="center">Storyteller</h1>
+<h1 align="center">Earshelf</h1>
 
 <p align="center">
   A personal, offline-first audiobook player for iPhone.<br/>
@@ -28,7 +28,7 @@
 
 ## Why
 
-radiotruyen.online has a huge catalogue of Vietnamese audio stories, but the site is ad-heavy, needs a connection the whole time, and forgets where you were. Storyteller turns any story page into a clean, local audiobook on your phone.
+radiotruyen.online has a huge catalogue of Vietnamese audio stories, but the site is ad-heavy, needs a connection the whole time, and forgets where you were. Earshelf turns any story page into a clean, local audiobook on your phone.
 
 ## Features
 
@@ -52,7 +52,7 @@ radiotruyen.online has a huge catalogue of Vietnamese audio stories, but the sit
 
 ## How the import works
 
-The episode list on radiotruyen.online is not in the HTML: it ships as an AES-encrypted blob that an obfuscated script decrypts in the browser before handing it to jPlayer. Instead of reverse-engineering the key, Storyteller lets the page decrypt itself:
+The episode list on radiotruyen.online is not in the HTML: it ships as an AES-encrypted blob that an obfuscated script decrypts in the browser before handing it to jPlayer. Instead of reverse-engineering the key, Earshelf lets the page decrypt itself:
 
 1. The story page is loaded in a hidden `WKWebView`, with images, fonts and ad/analytics hosts blocked by a content rule list so it loads fast.
 2. A user script injected at document start replaces `window.jPlayerPlaylist` with a stub that posts the decrypted `[{title, mp3}]` list back to Swift, and neutralises the site's devtools detector (`randomewave`), which otherwise removes the player.
@@ -73,8 +73,8 @@ Because it relies on the site's own decryption, a key rotation on the site doesn
 ## Project structure
 
 ```
-Storyteller/
-├── StorytellerApp.swift   App entry, model container, background-download hook
+Earshelf/
+├── EarshelfApp.swift      App entry, model container, background-download hook
 ├── Models.swift           Book / Episode (SwiftData)
 ├── RadioTruyen.swift      WKWebView scraper + library import/delete
 ├── Downloader.swift       Background downloads, progress, size estimate
@@ -93,8 +93,8 @@ docs/
 Requirements: a Mac with **Xcode 26 or later** and an iPhone on **iOS 17 or later**.
 
 ```bash
-git clone https://github.com/winter2897/storyteller.git
-open storyteller/Storyteller.xcodeproj
+git clone https://github.com/winter2897/earshelf.git
+open earshelf/Earshelf.xcodeproj
 ```
 
 **Simulator:** pick an iPhone simulator and press **Run** (⌘R).
@@ -121,7 +121,7 @@ With a free Apple ID the app stays signed for 7 days. Re-run from Xcode to renew
 
 ## Disclaimer
 
-Storyteller is a personal project for listening offline to content you can already access for free on radiotruyen.online. It is not affiliated with that site. Please respect the rights of the content owners, and don't redistribute downloaded audio.
+Earshelf is a personal project for listening offline to content you can already access for free on radiotruyen.online. It is not affiliated with that site. Please respect the rights of the content owners, and don't redistribute downloaded audio.
 
 ## License
 
