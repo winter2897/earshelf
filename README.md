@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/icon.png" width="120" alt="Earshelf icon" />
+  <img src="docs/logo.png" width="120" alt="Earshelf icon" />
 </p>
 
 <h1 align="center">Earshelf</h1>
