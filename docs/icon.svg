@@ -1,0 +1,60 @@
+<!-- Earshelf app icon. Render: rsvg-convert -w 1024 -h 1024 docs/icon.svg -o Earshelf/Assets.xcassets/AppIcon.appiconset/icon.png -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="142 140 970 970">
+  <defs>
+    <linearGradient id="bg" x1="0.3" y1="0" x2="0.65" y2="1">
+      <stop offset="0" stop-color="#C467FA"/>
+      <stop offset="0.45" stop-color="#8E3BDC"/>
+      <stop offset="0.8" stop-color="#6822BA"/>
+      <stop offset="1" stop-color="#6320B4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.62" r="0.42">
+      <stop offset="0" stop-color="#3C0F80" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#3C0F80" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="back" x1="1" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#C584F6"/>
+      <stop offset="1" stop-color="#9A4FEA"/>
+    </linearGradient>
+    <linearGradient id="mid" x1="0.95" y1="0" x2="0.1" y2="0.9">
+      <stop offset="0" stop-color="#F4DCFC"/>
+      <stop offset="0.45" stop-color="#C98CF7"/>
+      <stop offset="1" stop-color="#8A42D8"/>
+    </linearGradient>
+    <linearGradient id="front" x1="0.95" y1="0" x2="0.1" y2="0.95">
+      <stop offset="0" stop-color="#F9EAFC"/>
+      <stop offset="0.4" stop-color="#DDB0FA"/>
+      <stop offset="1" stop-color="#A253F1"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.1"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="-6" dy="22" stdDeviation="20" flood-color="#2E0A66" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect x="142" y="140" width="970" height="970" fill="url(#bg)"/>
+  <rect x="142" y="140" width="970" height="970" fill="url(#glow)"/>
+
+  <!-- back page -->
+  <path filter="url(#shadow)" fill="url(#back)"
+        d="M 640 560 C 720 500 800 472 870 470 L 915 470 Q 957 470 957 512 L 957 836 Q 957 862 932 848
+           C 860 808 760 770 640 760 Z"/>
+  <!-- middle sail -->
+  <g filter="url(#shadow)">
+    <path id="midp" fill="url(#mid)"
+          d="M 322 800 C 400 560 560 380 790 348 L 813 348 Q 857 348 857 392 L 857 866 Q 857 893 832 880
+             C 700 806 520 770 322 800 Z"/>
+  </g>
+  <path fill="none" stroke="url(#rim)" stroke-width="3" opacity="0.6"
+        d="M 322 800 C 400 560 560 380 790 348 L 813 348 Q 857 348 857 392"/>
+  <!-- front sail -->
+  <g filter="url(#shadow)">
+    <path fill="url(#front)"
+          d="M 268 858 C 335 715 490 580 680 568 L 687 568 Q 727 568 727 608 L 727 876 Q 727 905 702 892
+             C 600 840 460 800 382 812 C 330 820 296 838 268 858 Z"/>
+  </g>
+  <path fill="none" stroke="url(#rim)" stroke-width="3" opacity="0.7"
+        d="M 268 858 C 335 715 490 580 680 568 L 687 568 Q 727 568 727 608"/>
+</svg>

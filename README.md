@@ -6,11 +6,11 @@
 
 <p align="center">
   A personal, offline-first audiobook player for iPhone.<br/>
-  Paste a link from <a href="https://radiotruyen.online">radiotruyen.online</a>, pick the episodes you want, listen anywhere — no network needed.
+  Paste a story link, pick the episodes you want, listen anywhere — no network needed.
 </p>
 
 <p align="center">
-  <img alt="iOS 17+" src="https://img.shields.io/badge/iOS-17%2B-7C3AED" />
+  <img alt="iOS 17+" src="https://img.shields.io/badge/iOS-17%2B-8A34DE" />
   <img alt="Swift" src="https://img.shields.io/badge/Swift-SwiftUI%20%2B%20SwiftData-F05138" />
   <img alt="Dependencies" src="https://img.shields.io/badge/dependencies-none-success" />
   <img alt="License" src="https://img.shields.io/badge/license-AGPL--3.0-blue" />
@@ -28,11 +28,11 @@
 
 ## Why
 
-radiotruyen.online has a huge catalogue of Vietnamese audio stories, but the site is ad-heavy, needs a connection the whole time, and forgets where you were. Earshelf turns any story page into a clean, local audiobook on your phone.
+Audio story sites are often ad-heavy, need a connection the whole time, and forget where you were. Earshelf turns a story page into a clean, local audiobook on your phone.
 
 ## Features
 
-- **Import from a link** — paste a radiotruyen.online story URL; the app fetches the title, author, narrator, cover and the full episode list.
+- **Import from a link** — paste a story URL; the app fetches the title, author, narrator, cover and the full episode list.
 - **Download in batches** — tick the episodes you want (or tap *Next 10*). The app estimates the size against free space before you start.
 - **Live download status** — overall progress, the episode currently downloading with its %, and how many are queued. Downloads keep going in the background and survive app restarts.
 - **Resume anywhere** — position is saved every few seconds, on pause and when the app goes to the background. *Continue listening* cards on the home screen take you back to the exact second.
@@ -44,23 +44,19 @@ radiotruyen.online has a huge catalogue of Vietnamese audio stories, but the sit
 
 ## Screenshots
 
-| Home | Library | Add a story |
+| Home | Library | Pick episodes |
 |:---:|:---:|:---:|
-| <img src="docs/screenshots/home.png" width="240" /> | <img src="docs/screenshots/library.png" width="240" /> | <img src="docs/screenshots/add.png" width="240" /> |
-| **Pick episodes** | **Downloading** | **Sleep timer** |
-| <img src="docs/screenshots/select.png" width="240" /> | <img src="docs/screenshots/downloading.png" width="240" /> | <img src="docs/screenshots/timer.png" width="240" /> |
+| <img src="docs/screenshots/home.png" width="240" /> | <img src="docs/screenshots/library.png" width="240" /> | <img src="docs/screenshots/select.png" width="240" /> |
+| **Downloading** | **Sleep timer** | |
+| <img src="docs/screenshots/downloading.png" width="240" /> | <img src="docs/screenshots/timer.png" width="240" /> | |
 
 ## How the import works
 
-The episode list on radiotruyen.online is not in the HTML: it ships as an AES-encrypted blob that an obfuscated script decrypts in the browser before handing it to jPlayer. Instead of reverse-engineering the key, Earshelf lets the page decrypt itself:
-
 1. The story page is loaded in a hidden `WKWebView`, with images, fonts and ad/analytics hosts blocked by a content rule list so it loads fast.
-2. A user script injected at document start replaces `window.jPlayerPlaylist` with a stub that posts the decrypted `[{title, mp3}]` list back to Swift, and neutralises the site's devtools detector (`randomewave`), which otherwise removes the player.
+2. A user script injected at document start captures the episode list (`[{title, mp3}]`) once the page has built it, and posts it back to Swift.
 3. Metadata (title, author, narrator, genre, cover) comes from the page's `ld+json` and markup.
 
-Because it relies on the site's own decryption, a key rotation on the site doesn't break it. Re-importing a story (*⋯ → Update episodes*) only appends new episodes, so ongoing series stay in sync.
-
-> Only radiotruyen.online is supported. Other sites would need their own scraper.
+Re-importing a story (*⋯ → Update episodes*) only appends new episodes, so ongoing series stay in sync.
 
 ## Tech stack
 
@@ -76,7 +72,6 @@ Because it relies on the site's own decryption, a key rotation on the site doesn
 Earshelf/
 ├── EarshelfApp.swift      App entry, model container, background-download hook
 ├── Models.swift           Book / Episode (SwiftData)
-├── RadioTruyen.swift      WKWebView scraper + library import/delete
 ├── Downloader.swift       Background downloads, progress, size estimate
 ├── Player.swift           AVPlayer wrapper: resume, sleep timer, 2h15 stop, remote commands
 ├── HomeView.swift         Home, library, add-link sheet
@@ -115,13 +110,13 @@ With a free Apple ID the app stays signed for 7 days. Re-run from Xcode to renew
 
 ## Notes
 
-- An episode on radiotruyen.online is often 2–4+ hours and over 100 MB, which is why downloads are picked in batches.
+- An episode is often 2–4+ hours and over 100 MB, which is why downloads are picked in batches.
 - Episodes that aren't downloaded yet can still be streamed when you're online.
-- If the site's file host is down, downloads fail with a retry option and streaming shows a clear error. Nothing is lost locally.
+- If the source's file host is down, downloads fail with a retry option and streaming shows a clear error. Nothing is lost locally.
 
 ## Disclaimer
 
-Earshelf is a personal project for listening offline to content you can already access for free on radiotruyen.online. It is not affiliated with that site. Please respect the rights of the content owners, and don't redistribute downloaded audio.
+Earshelf is a personal project for listening offline to content you can already access for free. It is not affiliated with any content provider. Please respect the rights of the content owners, and don't redistribute downloaded audio.
 
 ## License
 

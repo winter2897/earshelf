@@ -70,7 +70,7 @@ struct HomeView: View {
                 .font(.system(size: 34, weight: .bold, design: .rounded))
             Image(systemName: "headphones.circle.fill")
                 .font(.system(size: 38))
-                .foregroundStyle(.white, LinearGradient(colors: [.brand, .purple], startPoint: .top, endPoint: .bottom))
+                .foregroundStyle(.white, LinearGradient(colors: [.logoTop, .logoBottom], startPoint: .top, endPoint: .bottom))
         }
     }
 

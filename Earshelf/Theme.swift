@@ -8,13 +8,15 @@ private func dyn(_ light: UInt32, _ dark: UInt32) -> Color {
 }
 
 extension Color {
-    static let brand = Color(red: 0.49, green: 0.23, blue: 0.93)
-    static let card = dyn(0xFFFFFF, 0x1E1D27)
+    static let brand = dyn(0x8A34DE, 0xB565F5)  // tím của logo, sáng hơn ở dark để đủ tương phản
+    static let logoTop = Color(red: 0.77, green: 0.40, blue: 0.98)     // 2 đầu gradient nền icon
+    static let logoBottom = Color(red: 0.41, green: 0.13, blue: 0.73)
+    static let card = dyn(0xFFFFFF, 0x221B2E)
     static let ink = dyn(0x121216, 0xF4F2FA)        // nền nút chính (đen ở light, trắng ở dark)
     static let onInk = dyn(0xFFFFFF, 0x121216)
-    static let bgTop = dyn(0xEEE9FB, 0x1B1729)
-    static let bgBottom = dyn(0xFAF9FD, 0x0E0E12)
-    static let track = dyn(0xD9D6E0, 0x3A3846)
+    static let bgTop = dyn(0xF1E4FC, 0x241439)
+    static let bgBottom = dyn(0xFBF8FE, 0x0F0C16)
+    static let track = dyn(0xDCD3E6, 0x3C3349)
 }
 
 struct AppBackground: View {
@@ -91,7 +93,7 @@ struct Cover: View {
                                 .padding(corner * 0.7)
                         }
                 } else {
-                    LinearGradient(colors: [.brand.opacity(0.85), .brand.opacity(0.45)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                    LinearGradient(colors: [.logoTop, .logoBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
                         .overlay(Text(book.title).font(.system(.title3, design: .serif, weight: .bold)).foregroundStyle(.white)
                             .multilineTextAlignment(.center).minimumScaleFactor(0.4).padding(8))
                 }
